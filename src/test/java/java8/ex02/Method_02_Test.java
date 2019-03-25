@@ -43,7 +43,7 @@ public class Method_02_Test {
         // TODO redéfinir la méthode String format()
         public String format(List<Person> people)
         {
-        	String sortie = "DaoA";
+        	String sortie = "DaoA"; //ou : DaoA.class.getSimpleName()
         	sortie += IDao.super.format(people);
         	return sortie;
         }

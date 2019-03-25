@@ -32,6 +32,7 @@ public class Method_03_Test
     
     //static pour pouvoir etre appeler par la classe mere ici interface
     //plus generalement, une classe satique est défini pour pouvoir etre appele ailleur sans intancier la classe mere
+    //ne paux exister que dans une instance d'une autre classe.
     static class DaoA implements IDao
     {
 
