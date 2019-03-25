@@ -44,7 +44,7 @@ public class Method_02_Test {
         public String format(List<Person> people)
         {
         	String sortie = "DaoA";
-        	sortie += IDao.super.format(people); //"[" + people.size() + " persons]";
+        	sortie += IDao.super.format(people);
         	return sortie;
         }
         // TODO la méthode retourne une chaîne de la forme DaoA[<nb_personnes> persons]
