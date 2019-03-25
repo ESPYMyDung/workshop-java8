@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
  */
 public class Lambda_02_Test {
 
-    // tag::PersonToAccountMapper[]
+    // ----tag::PersonToAccountMapper[]----
     interface PersonToAccountMapper {
         Account map(Person p);
     }
@@ -30,7 +30,7 @@ public class Lambda_02_Test {
     // end::map[]
 
 
-    // tag::test_map_person_to_account[]
+    // ----tag::test_map_person_to_account[]----
     @Test
     public void test_map_person_to_account() throws Exception {
 
@@ -46,7 +46,7 @@ public class Lambda_02_Test {
     }
     // end::test_map_person_to_account[]
 
-    // tag::test_map_person_to_firstname[]
+    // ----tag::test_map_person_to_firstname[]----
     @Test
     public void test_map_person_to_firstname() throws Exception {
 
