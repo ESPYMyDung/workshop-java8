@@ -13,7 +13,8 @@ import static org.junit.Assert.*;
 /**
  * Exercice 01 - java.util.function.Function
  */
-public class Function_01_Test {
+public class Function_01_Test
+{
 
     /******** PART 1 - Integer -> Person *******/
 
@@ -24,14 +25,24 @@ public class Function_01_Test {
     // TODO le nom sera de la forme "last_<ENTIER>"
     // TODO l'age sera de la forme "<ENTIER>"
     // TODO le mot de passe sera de la forme "pass_<ENTIER>"
-    private Function<Integer, Person> intToPerson = null;
+    private Function<Integer, Person> intToPerson = t ->
+    		{
+    			Person indv = new Person();
+    			indv.setAge(t);
+    			indv.setFirstname("first_"+t);
+    			indv.setLastname("last_"+t);
+    			indv.setPassword("pass_"+t);
+    			return indv;
+    		};
+    		//null;
     // end::intToPerson[]
 
     @Test
-    public void test_intToPerson() throws Exception {
+    public void test_intToPerson() throws Exception
+    {
 
         // TODO invoquer la fonction intToPerson avec en paramètre l'entier 10.
-        Person result = null;
+        Person result = intToPerson.apply(10);
 
         assertThat(result, hasProperty("firstname", is("first_10")));
         assertThat(result, hasProperty("lastname", is("last_10")));
@@ -45,16 +56,23 @@ public class Function_01_Test {
     // TODO Compléter la définition de cette fonction
     // TODO la propriété owner est valorisé avec la personne en paramètre
     // TODO la propriété balance est valorisé à 1000
-    private Function<Person, Account> personToAccount = null;
+    private Function<Person, Account> personToAccount = t ->
+    {
+    	Account ccp =new Account();
+    	ccp.setBalance(1000);
+    	ccp.setOwner(t);
+    	return ccp;
+    };
     // end::personToAccount[]
 
     @Test
-    public void test_personToAccount() throws Exception {
+    public void test_personToAccount() throws Exception
+    {
 
         Person person = new Person("Jules", "France", 10, "pass");
 
         // TODO invoquer la fonction personToAccount
-        Account result = null;
+        Account result = personToAccount.apply(person);
 
         assertThat(result, hasProperty("owner", is(person)));
         assertThat(result, hasProperty("balance", is(1000)));
@@ -66,15 +84,19 @@ public class Function_01_Test {
     // tag::intToAccountWithCompose[]
     // TODO Compléter la définition de cette fonction
     // TODO Utiliser la méthode compose pour réutiliser les fonctions intToPerson et personToAccount
-    private Function<Integer, Account> intToAccountWithCompose = null;
+    private Function<Integer, Account> intToAccountWithCompose = t ->
+    {
+    	 return personToAccount.compose(intToPerson).apply(t);
+    };
     // end::intToAccountWithCompose[]
 
 
     @Test
-    public void test_intToAccount_with_Compose() throws Exception {
+    public void test_intToAccount_with_Compose() throws Exception
+    {
 
         // TODO invoquer la fonction intToAccountWithCompose avec l'entier 10
-        Account result = null;
+        Account result = intToAccountWithCompose.apply(10);
 
         assertThat(result.getOwner(), hasProperty("firstname", is("first_10")));
         assertThat(result, hasProperty("balance", is(1000)));
@@ -85,14 +107,18 @@ public class Function_01_Test {
     // tag::intToAccountWithAndThen[]
     // TODO Compléter la définition de cette fonction
     // TODO Utiliser la méthode andThen pour réutiliser les fonctions intToPerson et personToAccount
-    private Function<Integer, Account> intToAccountWithAndThen = null;
+    private Function<Integer, Account> intToAccountWithAndThen = t ->
+    {
+   	 return intToPerson.andThen(personToAccount).apply(t);
+   };
     // end::intToAccountWithAndThen[]
 
     @Test
-    public void test_intToAccount_with_AndThen() throws Exception {
+    public void test_intToAccount_with_AndThen() throws Exception
+    {
 
         // TODO invoquer la fonction intToAccountWithAndThen avec l'entier 11
-        Account result = null;
+        Account result = intToAccountWithAndThen.apply(11);
 
         assertThat(result.getOwner(), hasProperty("firstname", is("first_11")));
         assertThat(result, hasProperty("balance", is(1000)));
