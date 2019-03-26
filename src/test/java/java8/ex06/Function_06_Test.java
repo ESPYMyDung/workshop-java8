@@ -17,7 +17,8 @@ import static org.junit.Assert.*;
 /**
  * Exercice 06 - java.util.function.Supplier
  */
-public class Function_06_Test {
+public class Function_06_Test
+{
 
     @Rule
     public ExpectedException expectedException = ExpectedException.none();
@@ -25,23 +26,27 @@ public class Function_06_Test {
     // tag::formatAge[]
     // TODO compléter la méthode
     // TODO la méthode retourne une chaîne de caractères de la forme [age=<AGE>] (exemple : [age=12])
-    String formatAge(Supplier<Person> supplier) {
-        // TODO
-        return null;
+    String formatAge(Supplier<Person> supplier)
+    { 
+        return "[age="+supplier.get().getAge()+"]";
     }
     // end::formatAge[]
 
 
     @Test
-    public void test_supplier_formatAge() throws Exception {
+    public void test_supplier_formatAge() throws Exception
+    {
+    	Person p = new Person(); p.setAge(35);
+    	Supplier<Person> sup = () -> p;
         // TODO compléter le test unitaire pour qu'il soit passant
-        String result = formatAge(null);
+        String result = formatAge(sup);
 
         assertThat(result, is("[age=35]"));
     }
 
     @Test
-    public void test_supplier_requireNonNull() throws Exception {
+    public void test_supplier_requireNonNull() throws Exception
+    {
 
         expectedException.expect(NullPointerException.class);
         expectedException.expectMessage("require non null object");
