@@ -75,7 +75,7 @@ public class Lambda_02_Test {
 
         List<Person> personList = Data.buildPersonList(100);
         
-        PersonToAccountMapper<String, Person> PersToAcc = new PersonToAccountMapper<String, Person>()
+        /*PersonToAccountMapper<String, Person> PersToAcc = new PersonToAccountMapper<String, Person>()
         {
         	@Override
         	public String map(Person p)
@@ -83,7 +83,7 @@ public class Lambda_02_Test {
        		
         		return p.getFirstname();
         	}
-        };
+        };*/
         
         //(String t) -> personList.stream().PersToAcc().getOwner().getFirstName().collect(Collectirs.toList());
 
